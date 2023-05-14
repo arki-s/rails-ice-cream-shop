@@ -10,8 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_14_011909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "containers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ice_creams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string "name"
+    t.text "comment"
+    t.bigint "ice_cream_id", null: false
+    t.bigint "topping_id", null: false
+    t.bigint "container_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["container_id"], name: "index_menus_on_container_id"
+    t.index ["ice_cream_id"], name: "index_menus_on_ice_cream_id"
+    t.index ["topping_id"], name: "index_menus_on_topping_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_reviews_on_menu_id"
+  end
+
+  create_table "toppings", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "menus", "containers"
+  add_foreign_key "menus", "ice_creams"
+  add_foreign_key "menus", "toppings"
+  add_foreign_key "reviews", "menus"
 end

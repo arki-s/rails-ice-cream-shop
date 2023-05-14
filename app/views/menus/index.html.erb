@@ -1,0 +1,5 @@
+ice cream shop
+<%= link_to "Create New Menu", new_menu_path %>
+<% @menus.each do |menu| %>
+  <%= link_to menu.name, menu_path(menu) %>
+<% end %>

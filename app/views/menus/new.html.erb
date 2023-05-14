@@ -1,0 +1,11 @@
+<h1>Create New Menu</h1>
+<%= simple_form_for(@menu) do |f| %>
+  <%= f.association :ice_cream, prompt: 'Choose an ice cream!'%>
+  <%= f.association :topping, prompt: 'Choose a topping!'%>
+  <%= f.association :container, prompt: 'Choose a container!'%>
+  <%= f.input :name %>
+  <%= f.input :comment %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit "Add New Menu!"%>
+<% end %>
+<%= link_to "Back", menus_path %>
