@@ -1,5 +1,60 @@
-ice cream shop
-<%= link_to "Create New Menu", new_menu_path %>
-<% @menus.each do |menu| %>
-  <%= link_to menu.name, menu_path(menu) %>
-<% end %>
+<div class="container-main">
+  <h1>Ice Cream Shop</h1>
+  <div class="card-container-top d-flex justify-content-evenly">
+    <div>
+      <% if @menus.count == 0 %>
+        <div class="card" style="width: 18rem;">
+          <%= image_tag 'goukyu.png', class:"card-img-top piyo d-block mx-auto"%>
+          <div class="card-body pt-0">
+            <h5 class="card-text m-0">Owner Piyo</h5>
+            <p class="card-text">I want to open a new ice cream shop. But now there is no menu. Please help me!</p>
+          </div>
+        </div>
+      <% elsif @menus.count == 1 %>
+        <div class="card" style="width: 18rem;">
+          <%= image_tag 'nicehiyoko.png', class:"card-img-top piyo d-block mx-auto"%>
+          <div class="card-body pt-0">
+            <h5 class="card-text m-0">Owner Piyo</h5>
+            <p class="card-text">Thank you for creating a new menu! I'm glad if you create more!</p>
+          </div>
+        </div>
+      <% elsif @menus.count >= 5 %>
+        <div class="card" style="width: 18rem;">
+          <%= image_tag 'paaa.png', class:"card-img-top piyo d-block mx-auto"%>
+          <div class="card-body pt-0">
+            <h5 class="card-text m-0">Owner Piyo</h5>
+            <p class="card-text">Thanks to you, this shop has become so much better!</p>
+          </div>
+        </div>
+      <% elsif @menus.count >= 10 %>
+        <div class="card" style="width: 18rem;">
+          <%= image_tag 'ofuse-piyo.png', class:"card-img-top piyo d-block mx-auto"%>
+          <div class="card-body pt-0">
+            <h5 class="card-text m-0">Owner Piyo</h5>
+            <p class="card-text">I'm making money hand over fist! haha!</p>
+          </div>
+        </div>
+      <% elsif @menus.count >= 30 %>
+        <div class="card" style="width: 18rem;">
+          <%= image_tag 'not-matomo.png', class:"card-img-top piyo d-block mx-auto"%>
+          <div class="card-body pt-0">
+            <h5 class="card-text m-0">Owner Piyo</h5>
+            <p class="card-text">You are still adding menus! ? I love you!</p>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to "Create New Menu", new_menu_path, class:"btn btn-primary btn-lg mt-3" %>
+    </div>
+  </div>
+</div>
+<div class="card-container-bottom">
+  <% @menus.each do |menu| %>
+    <%= link_to menu_path(menu), class:'text-decoration-none' do%>
+      <div class="cards">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= menu.photo.attached? ? cl_image_path(menu.photo.key) : '' %>)">
+          <%= menu.name %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,26 +1,28 @@
-<%= @menu.name %>
-<p></p>
-ice cream :
-<%= @menu.ice_cream.name %>
-<p></p>
-topping :
-<%= @menu.topping.name %>
-<p></p>
-container :
-<%= @menu.container.name %>
-<p></p>
-<%= @menu.comment %>
-<p></p>
-<% if @menu.reviews.exists? %>
-  <% @menu.reviews.each do |review| %>
-    <%= review.content %>
-    <p></p>
-    <%= link_to "Remove", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"}%>
+<div class="show-container">
+  <%= @menu.name %>
+  <p></p>
+  ice cream :
+  <%= @menu.ice_cream.name %>
+  <p></p>
+  topping :
+  <%= @menu.topping.name %>
+  <p></p>
+  container :
+  <%= @menu.container.name %>
+  <p></p>
+  <%= @menu.comment %>
+  <p></p>
+  <% if @menu.reviews.exists? %>
+    <% @menu.reviews.each do |review| %>
+      <%= review.content %>
+      <p></p>
+      <%= link_to "Remove", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"}%>
+    <% end %>
+  <% else %>
+    <h2>Empty! 🤪</h2>
   <% end %>
-<% else %>
-  <h2>Empty! 🤪</h2>
-<% end %>
-<p></p>
-<%= link_to "Review", new_menu_review_path(@menu) %>
-<p></p>
-<%= link_to "Back", menus_path %>
+  <p></p>
+  <%= link_to "Review", new_menu_review_path(@menu) %>
+  <p></p>
+  <%= link_to "Back", menus_path %>
+</div>
