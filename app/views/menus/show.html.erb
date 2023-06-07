@@ -1,28 +1,47 @@
 <div class="show-container">
-  <%= @menu.name %>
-  <p></p>
-  ice cream :
-  <%= @menu.ice_cream.name %>
-  <p></p>
-  topping :
-  <%= @menu.topping.name %>
-  <p></p>
-  container :
-  <%= @menu.container.name %>
-  <p></p>
-  <%= @menu.comment %>
-  <p></p>
-  <% if @menu.reviews.exists? %>
-    <% @menu.reviews.each do |review| %>
-      <%= review.content %>
-      <p></p>
-      <%= link_to "Remove", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"}%>
+  <div class="show-contents">
+    <h1><%= @menu.name %></h1>
+    <% if @menu.photo.attached? %>
+      <%= image_tag cl_image_path(@menu.photo.key)  %>
+    <% else %>
+      <%= image_tag 'ice.png'  %>
     <% end %>
-  <% else %>
-    <h2>Empty! 🤪</h2>
-  <% end %>
-  <p></p>
-  <%= link_to "Review", new_menu_review_path(@menu) %>
-  <p></p>
-  <%= link_to "Back", menus_path %>
+    <p></p>
+    ice cream :
+    <%= @menu.ice_cream.name %>
+    <p></p>
+    topping :
+    <%= @menu.topping.name %>
+    <p></p>
+    container :
+    <%= @menu.container.name %>
+    <p></p>
+    comment :
+    <%= @menu.comment %>
+    <p></p>
+    <div class="review-container">
+      <h3>Reviews</h3>
+      <p>Please submit your review!</p>
+      <%= render "reviews/form", menu: @menu, review: Review.new %>
+      <% if @menu.reviews.exists? %>
+        <% @menu.reviews.each do |review| %>
+          <div class="review-card ">
+            <div>
+              <%= review.content %>
+              <%= link_to review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"} do%>
+                <i class="fa-solid fa-trash-can" style="color: #ff68b4;"></i>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p></p>
+        <h2>No reviews now!</h2>
+      <% end %>
+    </div>
+    <p></p>
+    <%# <%= link_to "Review", new_menu_review_path(@menu) %>
+    <p></p>
+    <%= link_to "Back", menus_path %>
+  </div>
 </div>

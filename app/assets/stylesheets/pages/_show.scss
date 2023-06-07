@@ -1,0 +1,52 @@
+.show-container {
+  background-image: linear-gradient(rgba(0, 0, 0.1, 0.3), rgba(0, 0, 0, 0.5)), url(cup.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vw;
+  color: white;
+  text-shadow: 2px 1px 2px black;
+}
+
+.show-contents {
+  margin: auto;
+  align-items: center;
+  text-align: center;
+  width: 600px;
+  height: 100vw;
+}
+
+.show-container img {
+  // margin: auto;
+  background-image: url("ice.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: cover;
+  box-shadow: 2px 1px 2px black;
+  border-radius: 50px;
+  width: 300px;
+  height: 300px;
+}
+
+.review-container {
+  width: 500;
+  padding: 24px;
+
+  h3 {
+    color: $pink;
+  }
+}
+
+.review-card {
+  width: 450px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 16px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 24px;
+}

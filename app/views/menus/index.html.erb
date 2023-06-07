@@ -3,43 +3,43 @@
   <div class="card-container-top d-flex justify-content-evenly">
     <div>
       <% if @menus.count == 0 %>
-        <div class="card" style="width: 18rem;">
+        <div class="message-window anim-box poyoyon3 is-animated">
           <%= image_tag 'goukyu.png', class:"card-img-top piyo d-block mx-auto"%>
-          <div class="card-body pt-0">
-            <h5 class="card-text m-0">Owner Piyo</h5>
-            <p class="card-text">I want to open a new ice cream shop. But now there is no menu. Please help me!</p>
+          <div>
+            <h5>Owner Piyo</h5>
+            <p>I want to open a new ice cream shop. But now there is no menu. Please help me!</p>
           </div>
         </div>
-      <% elsif @menus.count == 1 %>
-        <div class="card" style="width: 18rem;">
-          <%= image_tag 'nicehiyoko.png', class:"card-img-top piyo d-block mx-auto"%>
-          <div class="card-body pt-0">
-            <h5 class="card-text m-0">Owner Piyo</h5>
-            <p class="card-text">Thank you for creating a new menu! I'm glad if you create more!</p>
+      <% elsif @menus.count >= 1 && @menus.count < 5 %>
+        <div class="message-window anim-box poyoyon3 is-animated">
+          <%= image_tag 'nice-hiyoko.png', class:"card-img-top piyo d-block mx-auto"%>
+          <div>
+            <h5>Owner Piyo</h5>
+            <p>Thank you for creating a new menu! I'm glad if you create more!</p>
           </div>
         </div>
-      <% elsif @menus.count >= 5 %>
-        <div class="card" style="width: 18rem;">
+      <% elsif @menus.count >= 5 && @menus.count < 10 %>
+        <div class="message-window anim-box poyoyon3 is-animated">
           <%= image_tag 'paaa.png', class:"card-img-top piyo d-block mx-auto"%>
-          <div class="card-body pt-0">
-            <h5 class="card-text m-0">Owner Piyo</h5>
-            <p class="card-text">Thanks to you, this shop has become so much better!</p>
+          <div>
+            <h5>Owner Piyo</h5>
+            <p>Thanks to you, this shop has become so much better!</p>
           </div>
         </div>
-      <% elsif @menus.count >= 10 %>
-        <div class="card" style="width: 18rem;">
+      <% elsif @menus.count >= 10 && @menus.count < 30 %>
+        <div class="message-window anim-box poyoyon3 is-animated">
           <%= image_tag 'ofuse-piyo.png', class:"card-img-top piyo d-block mx-auto"%>
-          <div class="card-body pt-0">
-            <h5 class="card-text m-0">Owner Piyo</h5>
-            <p class="card-text">I'm making money hand over fist! haha!</p>
+          <div>
+            <h5>Owner Piyo</h5>
+            <p>I'm making money hand over fist! haha!</p>
           </div>
         </div>
       <% elsif @menus.count >= 30 %>
-        <div class="card" style="width: 18rem;">
+        <div class="message-window anim-box poyoyon3 is-animated">
           <%= image_tag 'not-matomo.png', class:"card-img-top piyo d-block mx-auto"%>
-          <div class="card-body pt-0">
-            <h5 class="card-text m-0">Owner Piyo</h5>
-            <p class="card-text">You are still adding menus! ? I love you!</p>
+          <div>
+            <h5>Owner Piyo</h5>
+            <p>still adding menus! ? I love you!</p>
           </div>
         </div>
       <% end %>
@@ -48,13 +48,19 @@
   </div>
 </div>
 <div class="card-container-bottom">
-  <% @menus.each do |menu| %>
-    <%= link_to menu_path(menu), class:'text-decoration-none' do%>
-      <div class="cards">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= menu.photo.attached? ? cl_image_path(menu.photo.key) : '' %>)">
-          <%= menu.name %>
-        </div>
-      </div>
+  <div class="cards">
+    <% @menus.each do |menu| %>
+      <%= link_to menu_path(menu), class:'text-decoration-none' do%>
+        <% if menu.photo.attached? %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path(menu.photo.key) %>)">
+            <%= menu.name %>
+          </div>
+        <% else %>
+          <div class="card-category">
+            <%= menu.name %>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
