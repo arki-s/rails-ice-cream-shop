@@ -43,5 +43,7 @@
     <%# <%= link_to "Review", new_menu_review_path(@menu) %>
     <p></p>
     <%= link_to "Back", menus_path %>
+    <p></p>
+    <%= link_to "Delete this menu", menu_path(@menu), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"}%>
   </div>
 </div>

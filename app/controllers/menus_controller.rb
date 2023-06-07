@@ -23,6 +23,7 @@ class MenusController < ApplicationController
 
   def destroy
     @menu.destroy
+    redirect_to menus_path, status: :see_other
   end
 
   private
