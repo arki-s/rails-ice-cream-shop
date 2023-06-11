@@ -10,6 +10,7 @@ class MenusController < ApplicationController
 
   def new
     @menu = Menu.new
+    @review = Review.new
   end
 
   def create

@@ -1,4 +1,4 @@
-<div class="show-container">
+<div class="show-container" data-controller="insert-in-list">
   <div class="show-contents">
     <h1><%= @menu.name %></h1>
     <% if @menu.photo.attached? %>
@@ -7,40 +7,31 @@
       <%= image_tag 'ice.png'  %>
     <% end %>
     <p></p>
-    ice cream :
-    <%= @menu.ice_cream.name %>
+    <h4>Ice cream : <%= @menu.ice_cream.name %></h4>
     <p></p>
-    topping :
-    <%= @menu.topping.name %>
+    <h4>Topping : <%= @menu.topping.name %></h4>
     <p></p>
-    container :
-    <%= @menu.container.name %>
+    <h4>Container : <%= @menu.container.name %></h4>
     <p></p>
-    comment :
-    <%= @menu.comment %>
+    <h4>comment : <%= @menu.comment %></h4>
     <p></p>
-    <div class="review-container">
-      <h3>Reviews</h3>
-      <p>Please submit your review!</p>
-      <%= render "reviews/form", menu: @menu, review: Review.new %>
-      <% if @menu.reviews.exists? %>
+    <div class="review-container" >
+      <h3><%= pluralize @menu.reviews.size, "review" %></h3>
+      <div data-insert-in-list-target="items">
         <% @menu.reviews.each do |review| %>
           <div class="review-card ">
             <div>
-              <%= review.content %>
-              <%= link_to review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"} do%>
-                <i class="fa-solid fa-trash-can" style="color: #ff68b4;"></i>
-              </div>
+              <p><%= review.content %> <%= link_to review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"} do%>
+                  <i class="fa-solid fa-trash-can" style="color: #ff68b4;"></i></p>
+              <% end %>
             </div>
-          <% end %>
+          </div>
         <% end %>
-      <% else %>
-        <p></p>
-        <h2>No reviews now!</h2>
-      <% end %>
+      </div>
     </div>
     <p></p>
-    <%# <%= link_to "Review", new_menu_review_path(@menu) %>
+    <h3>Please add your review!</h3>
+    <%= render "reviews/form", menu: @menu, review: Review.new %>
     <p></p>
     <%= link_to "Back", menus_path %>
     <p></p>

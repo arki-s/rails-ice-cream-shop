@@ -1,17 +1,17 @@
 class ReviewsController < ApplicationController
-  def new
-    @menu = Menu.find(params[:menu_id])
-    @review = Review.new
-  end
 
   def create
     @review = Review.new(params_review)
     @menu = Menu.find(params[:menu_id])
     @review.menu = @menu
-    if @review.save
-      redirect_to menu_path(@menu)
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to menu_path(@menu) }
+        format.json
+      else
+        format.html { render "menus/show", status: :unprocessable_entity }
+        format.json
+      end
     end
   end
 
@@ -24,6 +24,6 @@ class ReviewsController < ApplicationController
   private
 
   def params_review
-    params.require(:review).permit(:content, :menu_id)
+    params.require(:review).permit(:content)
   end
 end

@@ -1,5 +1,5 @@
-<%= simple_form_for [menu, review],
-  data: {review_target: "form", action: "submit->review#send"} do |f| %>
-  <%= f.input :content %>
+<%= simple_form_for([@menu, review],
+  data: {insert_in_list_target: "form", action: "submit->insert-in-list#send" }) do |f| %>
+  <%= f.input :content, as: :text %>
   <%= f.submit "Add a Review!", class:"btn btn-primary"%>
 <% end %>

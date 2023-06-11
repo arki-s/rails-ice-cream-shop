@@ -1,0 +1,7 @@
+<div class="review-card ">
+  <div>
+    <p><%= review.content %> <%= link_to review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"} do%>
+        <i class="fa-solid fa-trash-can" style="color: #ff68b4;"></i></p>
+    <% end %>
+  </div>
+</div>

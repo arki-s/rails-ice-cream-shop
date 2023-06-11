@@ -1,13 +1,10 @@
 .show-container {
-  background-image: linear-gradient(rgba(0, 0, 0.1, 0.3), rgba(0, 0, 0, 0.5)), url(cup.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  object-fit: cover;
-  background-size: cover;
-  width: 100vw;
-  height: 100vw;
   color: white;
-  text-shadow: 2px 1px 2px black;
+  text-shadow: 3px 1px 3px black;
+
+  h3 {
+    color: $pink;
+  }
 }
 
 .show-contents {
@@ -35,18 +32,19 @@
   width: 500;
   padding: 24px;
 
-  h3 {
-    color: $pink;
+  p {
+    color: black;
+    text-shadow: none;
   }
+
 }
 
 .review-card {
   width: 450px;
-  padding: 30px;
+  padding: 6px;
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.5);
   margin-top: 16px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 24px;
 }
